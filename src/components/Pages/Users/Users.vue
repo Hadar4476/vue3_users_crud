@@ -22,9 +22,12 @@
           <td>{{ user.name }}</td>
           <td class="capitalize">{{ user.role }}</td>
           <td>{{ user.isEmailVerified ? "Yes" : "No" }}</td>
-          <td v-if="currentUser.id !== user.id" class="td-actions">
+          <td class="td-actions">
             <div v-if="!isMobile" class="actions">
-              <button class="delete-btn" @click="onDeleteUser(user.id)"
+              <button
+                v-if="currentUser.id !== user.id"
+                class="delete-btn"
+                @click="onDeleteUser(user.id)"
                 >Delete</button
               >
               <button class="edit-btn" @click="onDisplayEditUserForm(user.id)"
@@ -155,6 +158,10 @@
       }
 
       tbody {
+        .actions {
+          justify-content: flex-end;
+        }
+
         .delete-btn {
           background-color: $color-secondary;
           color: $color-white;
@@ -188,7 +195,7 @@
       table {
         td,
         th {
-          padding: 0 32px;
+          padding: 0 43px;
         }
       }
     }

@@ -9,5 +9,3 @@
     name: "auth-page",
   };
 </script>
-
-<style></style>
