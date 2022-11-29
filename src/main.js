@@ -1,4 +1,14 @@
-import { createApp } from 'vue'
-import App from './App.vue'
+import { createApp } from "vue";
+import router from "./routes";
+import store from "./store";
+import global from "./mixins/global";
 
-createApp(App).mount('#app')
+import App from "./App.vue";
+
+const app = createApp(App);
+
+app.use(router);
+app.use(store);
+app.mixin(global);
+
+app.mount("#app");

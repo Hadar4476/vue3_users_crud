@@ -1,26 +1,70 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="app">
+    <TheHeader />
+    <main>
+      <router-view></router-view>
+    </main>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+  import TheHeader from "./components/TheHeader/TheHeader.vue";
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  export default {
+    name: "app",
+    components: {
+      TheHeader,
+    },
+    async created() {
+      const user = localStorage.getItem("user");
+
+      if (user) {
+        this.loginUser(JSON.parse(user));
+        this.$router.push("/users");
+      } else {
+        this.$router.push("/auth/login");
+      }
+    },
+  };
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang="scss">
+  @import "assets/scss/global.scss";
+
+  .app {
+    main {
+      padding-top: 32px;
+    }
+
+    .title {
+      color: $color-black;
+      font-size: 32px;
+      font-weight: bold;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 26px;
+      border-top: 1px solid $color-gray;
+      padding-top: 29px;
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    button {
+      cursor: pointer;
+      border: none;
+      height: 39px;
+      width: fit-content;
+      border-radius: 4px;
+      font-size: 16px;
+      font-weight: 600;
+      padding: 0 16px;
+    }
+  }
 </style>
