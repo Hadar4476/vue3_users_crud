@@ -88,8 +88,9 @@
             const { message } = error.response.data;
 
             message.split(",").forEach((text) => {
-              const isNameError = text.toLowerCase().includes("name");
-              const isEmailError = text.toLowerCase().includes("email");
+              const lowerCaseText = text.toLowerCase();
+              const isNameError = lowerCaseText.includes("name");
+              const isEmailError = lowerCaseText.includes("email");
 
               if (isNameError) {
                 this.errors.nameValueError = this.generateInputErrorMessage(

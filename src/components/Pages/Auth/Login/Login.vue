@@ -80,9 +80,12 @@
             const { message } = error.response.data;
 
             message.split(",").forEach((text) => {
-              const isInvalidInfo = text === "Incorrect email or password";
-              const isEmailError = text.toLowerCase().includes("email");
-              const isPasswordError = text.toLowerCase().includes("password");
+              const lowerCaseText = text.toLowerCase();
+              const isInvalidInfo =
+                lowerCaseText.includes("email") &&
+                lowerCaseText.includes("password");
+              const isEmailError = lowerCaseText.includes("email");
+              const isPasswordError = lowerCaseText.includes("password");
 
               if (isInvalidInfo) {
                 this.errors.passwordValueError = text;

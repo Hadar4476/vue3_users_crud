@@ -109,9 +109,10 @@
             const { message } = error.response.data;
 
             message.split(",").forEach((text) => {
-              const isEmailError = text.toLowerCase().includes("email");
-              const isPasswordError = text.toLowerCase().includes("password");
-              const isNameError = text.toLowerCase().includes("name");
+              const lowerCaseText = text.toLowerCase();
+              const isEmailError = lowerCaseText.includes("email");
+              const isPasswordError = lowerCaseText.includes("password");
+              const isNameError = lowerCaseText.includes("name");
 
               if (isEmailError) {
                 this.errors.emailValueError = this.generateInputErrorMessage(

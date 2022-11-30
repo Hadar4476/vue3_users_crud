@@ -36,6 +36,7 @@
             </div>
             <div v-else class="actions">
               <img
+                v-if="currentUser.id !== user.id"
                 class="icon"
                 :src="deleteIcon"
                 alt="delete-icon"

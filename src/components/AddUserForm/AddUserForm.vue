@@ -105,10 +105,11 @@
             const { message } = error.response.data;
 
             message.split(",").forEach((text) => {
-              const isNameError = text.toLowerCase().includes("name");
-              const isRoleError = text.toLowerCase().includes("role");
-              const isPasswordError = text.toLowerCase().includes("password");
-              const isEmailError = text.toLowerCase().includes("email");
+              const lowerCaseText = text.toLowerCase();
+              const isNameError = lowerCaseText.includes("name");
+              const isRoleError = lowerCaseText.includes("role");
+              const isPasswordError = lowerCaseText.includes("password");
+              const isEmailError = lowerCaseText.includes("email");
 
               if (isNameError) {
                 this.errors.nameValueError = this.generateInputErrorMessage(
